@@ -1,0 +1,3 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of locationsList; let i = index" [attr.data-index]="i" (click)="redirect(item.id)">{{ item.name }}</li>
+</ul>

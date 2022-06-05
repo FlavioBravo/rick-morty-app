@@ -1,0 +1,12 @@
+<div class="card" style="width: 18rem;">
+    <img [src]="character?.image" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{character?.name}}</h5>
+      <p class="card-text">location: {{character?.location?.name}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">gender: {{character?.gender}}</li>
+      <li class="list-group-item">species: {{character?.species}}</li>
+      <li class="list-group-item">status: {{character?.status}}</li>
+    </ul>
+  </div>

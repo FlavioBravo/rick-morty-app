@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+    <img [src]="episode?.image || pathImg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{episode?.episode}}</h5>
+      <p class="card-text">name: {{episode?.name}}</p>
+      <p class="card-text">air date: {{episode?.air_date}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let item of episode?.characters; let i = index" [attr.data-index]="i">character: {{ item }}</li>
+    </ul>
+</div>

@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+    <img [src]="location?.image || pathImg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{location?.name}}</h5>
+      <p class="card-text">dimension: {{location?.dimension}}</p>
+      <li class="list-group-item">type: {{location?.type}}</li>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let item of location?.characters; let i = index" [attr.data-index]="i">character: {{ item }}</li>
+    </ul>
+  </div>
