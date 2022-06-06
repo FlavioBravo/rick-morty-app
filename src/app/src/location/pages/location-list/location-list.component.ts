@@ -15,13 +15,16 @@ export class LocationListComponent implements OnInit {
   locations$;
   subscriptionLocation!: Subscription;
   locationsList!: Array<any>;
+  currentList!: Array<any>;
 
   constructor(private store: Store<AppState>, private route: Router) { 
     this.locations$ = this.store;
     this.locationsList = [];
+    this.currentList = [];
     this.subscriptionLocation = this.locations$.subscribe(res => {
       if(res?.locations?.locationsList?.length > 2) {
-        this.locationsList.push(...res.locations.locationsList)
+        this.locationsList.push(...res.locations.locationsList);
+        this.currentList.push(...res.locations.locationsList);
       }
     });
   }
@@ -32,6 +35,10 @@ export class LocationListComponent implements OnInit {
 
   redirect(id: any){
     this.route.navigate([`location/detail/${id}`]);
+  }
+
+  receiveSearchList($event: any) {
+    this.currentList = [...$event];
   }
 
   ngOnDestroy(): void {

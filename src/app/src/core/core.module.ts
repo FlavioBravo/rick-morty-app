@@ -9,16 +9,20 @@ import { actionReducerMap } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { SearchComponent } from './components/search/search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    CoreComponent
+    CoreComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     CoreRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(actionReducerMap),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
@@ -28,6 +32,9 @@ import { environment } from 'src/environments/environment';
   ],
   providers: [
     RickAndMortyService
+  ],
+  exports: [
+    SearchComponent
   ]
 })
 export class CoreModule { }

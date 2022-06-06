@@ -15,13 +15,16 @@ export class CharacterListComponent implements OnInit {
   characters$;
   subscriptionCharacter!: Subscription;
   charactersList!: Array<any>;
+  currentList!: Array<any>;
 
   constructor(private store: Store<AppState>, private route: Router) { 
     this.characters$ = this.store;
     this.charactersList = [];
+    this.currentList = [];
     this.subscriptionCharacter = this.characters$.subscribe(res => {
       if(res?.characters?.characterslist?.length > 2) {
-        this.charactersList.push(...res.characters.characterslist)
+        this.charactersList.push(...res.characters.characterslist);
+        this.currentList.push(...res.characters.characterslist);
       }
     });
   }
@@ -32,6 +35,10 @@ export class CharacterListComponent implements OnInit {
 
   redirect(id: any){
     this.route.navigate([`character/detail/${id}`]);
+  }
+
+  receiveSearchList($event: any) {
+    this.currentList = [...$event];
   }
 
   ngOnDestroy(): void {

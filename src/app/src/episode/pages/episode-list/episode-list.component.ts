@@ -15,13 +15,16 @@ export class EpisodeListComponent implements OnInit {
   episodes$;
   subscriptionEpisode!: Subscription;
   episodesList!: Array<any>;
+  currentList!: Array<any>;
 
   constructor(private store: Store<AppState>, private route: Router) { 
     this.episodes$ = this.store;
     this.episodesList = [];
+    this.currentList = [];
     this.subscriptionEpisode = this.episodes$.subscribe(res => {
       if(res?.episodes?.episodesList?.length > 2) {
-        this.episodesList.push(...res.episodes.episodesList)
+        this.episodesList.push(...res.episodes.episodesList);
+        this.currentList.push(...res.episodes.episodesList);
       }
     });
   }
@@ -32,6 +35,10 @@ export class EpisodeListComponent implements OnInit {
 
   redirect(id: any){
     this.route.navigate([`episode/detail/${id}`]);
+  }
+
+  receiveSearchList($event: any) {
+    this.currentList = [...$event];
   }
 
   ngOnDestroy(): void {
